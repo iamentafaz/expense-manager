@@ -1,15 +1,21 @@
 import * as React from 'react';
-
 import { Box, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ExpenseTable from '../components/ExpenseTable';
 import ExpenseForm from '../components/ExpenseForm';
+import { sagaActions } from '../redux/sagaActions';
 
 export default function Home() {
+    const dispatch = useDispatch();
     const expenses = useSelector((state) => state.expense.expenses);
+    console.log('ex', expenses)
     const [openForm, setOpenForm] = React.useState(false);
+
+    React.useEffect(() => {
+        dispatch({ type: sagaActions.FETCH_USER_EXPENSES })
+        dispatch({ type: sagaActions.ADD_USER_EXPENSE, body: {amount: 23}})
+    }, [dispatch])
 
     return (
         <Box
