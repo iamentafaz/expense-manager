@@ -4,7 +4,7 @@ import createSagaMiddleware from "redux-saga";
 import saga from "./saga";
 
 let sagaMiddleware = createSagaMiddleware();
-const middleware = [...getDefaultMiddleware({thunk: false}), sagaMiddleware]
+const middleware = [...getDefaultMiddleware({thunk: false, serializableCheck: false}), sagaMiddleware]
 
 export const store = configureStore({
     reducer: {

@@ -21,8 +21,8 @@ function Header() {
                         >
                             <WalletIcon />
                         </IconButton>
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            My Expense
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 700, letterSpacing: '1px' }}>
+                            FinTrack
                         </Typography>
                         <Button color="inherit">Login</Button>
                     </Toolbar>

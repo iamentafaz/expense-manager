@@ -11,10 +11,9 @@ export const expenseSlice = createSlice({
         addExpense: (state, action) => {
             state.expenses.push(action.payload);
         },
-        editExpense: (state, action) => {},
-        deleteExpense: (state, action) => {},
+        editExpense: (state, action) => { },
+        deleteExpense: (state, action) => { },
         getExpenses: (state, action) => {
-            console.log('action', action);
             state.expenses = action.payload;
         },
     },

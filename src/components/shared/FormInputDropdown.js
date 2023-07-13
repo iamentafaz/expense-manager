@@ -13,7 +13,7 @@ const options = [
         label: 'Debit',
     },
 ];
-export const FormInputDropdown = ({ name, control, label }) => {
+export const FormInputDropdown = ({ name, control, label, rules }) => {
     const generateSingleOptions = () => {
         return options.map((option) => {
             return (
@@ -27,6 +27,7 @@ export const FormInputDropdown = ({ name, control, label }) => {
         <Controller
             name={name}
             control={control}
+            rules={rules}
             render={({ field: { onChange, value }, fieldState: { error } }) => (
                 <TextField
                     helperText={error ? error.message : null}

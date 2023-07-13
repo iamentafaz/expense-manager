@@ -9,7 +9,6 @@ import { sagaActions } from '../redux/sagaActions';
 export default function Home() {
     const dispatch = useDispatch();
     const expenses = useSelector((state) => state.expense.expenses);
-    console.log('ex', expenses);
     const [openForm, setOpenForm] = React.useState(false);
 
     React.useEffect(() => {

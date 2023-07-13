@@ -4,6 +4,7 @@ import { getExpenses } from './expenseSlice';
 
 import { db } from '../firebase';
 import { addDoc, collection, getDocs } from 'firebase/firestore';
+import dayjs from 'dayjs';
 
 const callGetApi = async () => {
     const querySnapshot = await getDocs(collection(db, 'expenses'));
@@ -13,7 +14,7 @@ const callGetApi = async () => {
             const fireBaseTime = new Date(
                 data.date.seconds * 1000 + data.date.nanoseconds / 1000000
             );
-            const date = fireBaseTime.toDateString();
+            const date = dayjs(fireBaseTime.toDateString()).format('LL');
             data.date = date;
         }
         return { ...data, id: doc.id };

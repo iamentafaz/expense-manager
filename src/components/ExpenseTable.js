@@ -5,6 +5,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Alert, Stack } from '@mui/material';
+
+const tableHeadS = { backgroundColor: '#000', color: '#fff', fontWeight:600 }
 
 export default function ExpenseTable(props) {
     return (
@@ -13,31 +16,31 @@ export default function ExpenseTable(props) {
                 <TableHead>
                     <TableRow>
                         <TableCell
-                            sx={{ backgroundColor: '#000', color: '#fff' }}
+                            sx={tableHeadS}
                         >
                             Date
                         </TableCell>
                         <TableCell
                             align='right'
-                            sx={{ backgroundColor: '#000', color: '#fff' }}
+                            sx={tableHeadS}
                         >
                             Amount
                         </TableCell>
                         <TableCell
                             align='right'
-                            sx={{ backgroundColor: '#000', color: '#fff' }}
+                            sx={tableHeadS}
                         >
                             Type
                         </TableCell>
                         <TableCell
                             align='right'
-                            sx={{ backgroundColor: '#000', color: '#fff' }}
+                            sx={tableHeadS}
                         >
                             Category
                         </TableCell>
                         <TableCell
                             align='right'
-                            sx={{ backgroundColor: '#000', color: '#fff' }}
+                            sx={tableHeadS}
                         >
                             Description
                         </TableCell>
@@ -67,10 +70,16 @@ export default function ExpenseTable(props) {
                             </TableCell>
                         </TableRow>
                     ))}
+                    {props.tableData.length === 0 ? (
+                        <TableRow>
+                            <TableCell colSpan={5}>
+                                <Stack sx={{ width: '100%' }} spacing={1}>
+                                    <Alert severity="info" sx={{fontWeight: 600 }}>No data  available!</Alert>
+                                </Stack>
+                            </TableCell>
+                        </TableRow>
+                    ) : <></>}
                 </TableBody>
-                {/* {props.tableData.length === 0 && (
-                        <div>No data available!</div>
-                    )} */}
             </Table>
         </TableContainer>
     );
