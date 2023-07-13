@@ -24,18 +24,20 @@ const expenseForm = {
 export default function ExpenseForm(props) {
     const open = props.openForm;
     const dispatch = useDispatch();
-    const { handleSubmit, reset, control, setValue } = useForm({
+    const { handleSubmit, reset, control, setValue, register, formState } = useForm({
         defaultValues: expenseForm,
-    });
+    });;
+    console.log('reg',formState, {...register("amount", { required: true, maxLength: 20 })})
 
     const addExpenseHandler = (data) => {
-        const formatDate = dayjs(data.date.$d).format('DD-MM-YYYY');
-        data.date = formatDate;
-        const expense = {
-            ...data,
-        };
-        dispatch({ type: sagaActions.ADD_USER_EXPENSE, body: expense });
-        props.onClose();
+        console.log(data, formState);
+        // const formatDate = dayjs(data.date.$d).format('DD-MM-YYYY');
+        // data.date = formatDate;
+        // const expense = {
+        //     ...data,
+        // };
+        // dispatch({ type: sagaActions.ADD_USER_EXPENSE, body: expense });
+        // props.onClose();
     };
 
     const handleClose = () => {
@@ -68,11 +70,13 @@ export default function ExpenseForm(props) {
                     name='category'
                     label='Category'
                     control={control}
+
                 />
                 <FormInputText
                     name='description'
                     label='Description'
                     control={control}
+
                 />
                 <FormInputDropdown name='type' label='Type' control={control} />
             </DialogContent>

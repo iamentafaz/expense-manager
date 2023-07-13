@@ -1,17 +1,20 @@
 import { Controller } from 'react-hook-form';
 import { TextField } from '@mui/material';
 
-export const FormInputText = ({ name, control, label, type = 'text' }) => {
+export const FormInputText = (props) => {
+    const{ name, control, label, type = 'text' } = props
     return (
         <Controller
             name={name}
             control={control}
+            rules={{ required: {value: true, message: 'Please fill this field'}, }}
             render={({
                 field: { onChange, value },
                 fieldState: { error },
                 formState,
-            }) => (
-                <TextField
+            }) => {
+                console.log('err', error,)
+                return <TextField
                     helperText={error ? error.message : null}
                     error={!!error}
                     onChange={onChange}
@@ -22,7 +25,7 @@ export const FormInputText = ({ name, control, label, type = 'text' }) => {
                     variant='outlined'
                     margin='normal'
                 />
-            )}
+            }}
         />
     );
 };
