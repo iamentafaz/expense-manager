@@ -43,7 +43,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function ExpenseForm(props) {
     const open = props.openForm;
     const dispatch = useDispatch();
-    const { handleSubmit, reset, control, setValue, register, formState } = useForm({
+    const { handleSubmit, control, } = useForm({
         defaultValues: expenseForm,
     });;
 

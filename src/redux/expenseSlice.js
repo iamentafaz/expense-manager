@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     expenses: [],
+    loading: false,
+    error: null,
 };
 
 export const expenseSlice = createSlice({
@@ -16,10 +18,14 @@ export const expenseSlice = createSlice({
         getExpenses: (state, action) => {
             state.expenses = action.payload;
         },
+        apiFailure: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        }
     },
 });
 
-export const { addExpense, editExpense, deleteExpense, getExpenses } =
+export const { addExpense, editExpense, deleteExpense, getExpenses, apiFailure } =
     expenseSlice.actions;
 
 export default expenseSlice.reducer;

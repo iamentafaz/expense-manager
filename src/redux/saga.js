@@ -1,6 +1,6 @@
-import { takeEvery, call, put, all, fork } from 'redux-saga/effects';
+import { takeEvery, call, put, all } from 'redux-saga/effects';
 import { sagaActions } from './sagaActions';
-import { getExpenses } from './expenseSlice';
+import { getExpenses, apiFailure } from './expenseSlice';
 
 import { db } from '../firebase';
 import { addDoc, collection, getDocs } from 'firebase/firestore';
@@ -24,35 +24,40 @@ const callGetApi = async () => {
 
 const callPostApi = async ({ body }) => {
     const querySnapshot = await addDoc(collection(db, 'expenses'), body);
+    const newData = { id: querySnapshot.id };
+    return newData;
 };
 
 function* fetchUserExpenses() {
     try {
         let result = yield call(() => callGetApi());
         yield put(getExpenses(result));
+        yield put({ type: sagaActions.EXPENSE_FETCH_FAILED, error: 'hi' });
+
     } catch (e) {
-        yield put({ type: 'EXPENSE_FETCH_FAILED' });
+        yield put({ type: sagaActions.EXPENSE_FETCH_FAILED, error: e });
     }
 }
 
 function* addUserExpense(body) {
-    console.log('body', body);
     try {
-        let result = yield call(() => callPostApi(body));
+        yield call(() => callPostApi(body));
         yield put({ type: sagaActions.FETCH_USER_EXPENSES });
     } catch (e) {
-        yield put({ type: 'EXPENSE_FETCH_FAILED' });
+        yield put({ type: sagaActions.EXPENSE_ADD_FAILED, error: e });
     }
 }
 
-// function* fetchUserExpensesSaga() {
-//     yield takeEvery(sagaActions.FETCH_USER_EXPENSES, fetchUserExpenses);
-// }
+
+function* apiFailed(response) {
+    yield put(apiFailure(response.error))
+}
 
 export default function* rootSaga() {
     yield all([
         takeEvery(sagaActions.FETCH_USER_EXPENSES, fetchUserExpenses),
         takeEvery(sagaActions.ADD_USER_EXPENSE, addUserExpense),
+        takeEvery(sagaActions.EXPENSE_FETCH_FAILED, apiFailed),
+        takeEvery(sagaActions.EXPENSE_ADD_FAILED, apiFailed)
     ]);
-    // yield fork(fetchUserExpensesSaga)
 }
