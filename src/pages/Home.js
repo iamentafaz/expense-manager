@@ -9,13 +9,12 @@ import { sagaActions } from '../redux/sagaActions';
 export default function Home() {
     const dispatch = useDispatch();
     const expenses = useSelector((state) => state.expense.expenses);
-    console.log('ex', expenses)
+    console.log('ex', expenses);
     const [openForm, setOpenForm] = React.useState(false);
 
     React.useEffect(() => {
-        dispatch({ type: sagaActions.FETCH_USER_EXPENSES })
-        dispatch({ type: sagaActions.ADD_USER_EXPENSE, body: {amount: 23}})
-    }, [dispatch])
+        dispatch({ type: sagaActions.FETCH_USER_EXPENSES });
+    }, [dispatch]);
 
     return (
         <Box
@@ -35,7 +34,7 @@ export default function Home() {
                     startIcon={<AddIcon />}
                     onClick={() => setOpenForm(true)}
                     sx={{
-                        fontWeight: '700'
+                        fontWeight: '700',
                     }}
                 >
                     Add your expenses

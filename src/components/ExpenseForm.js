@@ -6,12 +6,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch } from 'react-redux';
-import { addExpense } from '../redux/expenseSlice';
 import { useForm } from 'react-hook-form';
 import { FormInputText } from './shared/FormInputText';
 import { FormInputDropdown } from './shared/FormInputDropdown';
 import { FormInputDate } from './shared/FormInputDate';
 import dayjs from 'dayjs';
+import { sagaActions } from '../redux/sagaActions';
 
 const expenseForm = {
     amount: '',
@@ -32,10 +32,9 @@ export default function ExpenseForm(props) {
         const formatDate = dayjs(data.date.$d).format('DD-MM-YYYY');
         data.date = formatDate;
         const expense = {
-            id: Math.random() * 100,
             ...data,
         };
-        dispatch(addExpense(expense));
+        dispatch({ type: sagaActions.ADD_USER_EXPENSE, body: expense });
         props.onClose();
     };
 

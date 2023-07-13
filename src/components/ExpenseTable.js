@@ -58,17 +58,19 @@ export default function ExpenseTable(props) {
                                 {row.date}
                             </TableCell>
                             <TableCell align='right'>{row.amount}</TableCell>
-                            <TableCell align='right'>{row.type === 'cr' ? 'Credit': 'Debit'}</TableCell>
+                            <TableCell align='right'>
+                                {row.type === 'cr' ? 'Credit' : 'Debit'}
+                            </TableCell>
                             <TableCell align='right'>{row.category}</TableCell>
                             <TableCell align='right'>
                                 {row.description}
                             </TableCell>
                         </TableRow>
                     ))}
-                    {props.tableData.length === 0 && (
-                        <div>No data available!</div>
-                    )}
                 </TableBody>
+                {/* {props.tableData.length === 0 && (
+                        <div>No data available!</div>
+                    )} */}
             </Table>
         </TableContainer>
     );
