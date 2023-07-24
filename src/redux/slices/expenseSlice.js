@@ -13,19 +13,24 @@ export const expenseSlice = createSlice({
         addExpense: (state, action) => {
             state.expenses.push(action.payload);
         },
-        editExpense: (state, action) => { },
-        deleteExpense: (state, action) => { },
+        editExpense: (state, action) => {},
+        deleteExpense: (state, action) => {},
         getExpenses: (state, action) => {
             state.expenses = action.payload;
         },
         apiFailure: (state, action) => {
             state.loading = false;
-            state.error = action.payload
-        }
+            state.error = action.payload;
+        },
     },
 });
 
-export const { addExpense, editExpense, deleteExpense, getExpenses, apiFailure } =
-    expenseSlice.actions;
+export const {
+    addExpense,
+    editExpense,
+    deleteExpense,
+    getExpenses,
+    apiFailure,
+} = expenseSlice.actions;
 
 export default expenseSlice.reducer;

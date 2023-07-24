@@ -1,7 +1,4 @@
-import {
-    MenuItem,
-    TextField,
-} from '@mui/material';
+import { MenuItem, TextField } from '@mui/material';
 import { Controller } from 'react-hook-form';
 const options = [
     {
@@ -36,9 +33,9 @@ export const FormInputDropdown = ({ name, control, label, rules }) => {
                     value={value}
                     fullWidth
                     label={label}
-                    variant='outlined'
+                    variant="outlined"
                     select
-                    margin='normal'
+                    margin="normal"
                 >
                     {generateSingleOptions()}
                 </TextField>

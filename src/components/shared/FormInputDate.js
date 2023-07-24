@@ -10,8 +10,13 @@ export const FormInputDate = ({ name, control, label }) => {
             <Controller
                 name={name}
                 control={control}
-                rules={{ required: { value: true, message: 'Please select a date' } }}
-                render={({ field: { onChange, value }, fieldState: { error }, },) => {
+                rules={{
+                    required: { value: true, message: 'Please select a date' },
+                }}
+                render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                }) => {
                     return (
                         <>
                             <DatePicker
@@ -22,11 +27,21 @@ export const FormInputDate = ({ name, control, label }) => {
                                 disableFuture
                                 sx={{ width: '100%' }}
                             />
-                            {error ? <Typography color="error" sx={{ fontSize: '0.75rem', mt: '.5rem', ml: '.75rem' }}>{error.message}</Typography> : null}
+                            {error ? (
+                                <Typography
+                                    color="error"
+                                    sx={{
+                                        fontSize: '0.75rem',
+                                        mt: '.5rem',
+                                        ml: '.75rem',
+                                    }}
+                                >
+                                    {error.message}
+                                </Typography>
+                            ) : null}
                         </>
-                    )
-                }
-                }
+                    );
+                }}
             />
         </LocalizationProvider>
     );

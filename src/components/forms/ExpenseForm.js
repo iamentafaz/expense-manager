@@ -7,20 +7,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { FormInputText } from './shared/FormInputText';
-import { FormInputDropdown } from './shared/FormInputDropdown';
-import { FormInputDate } from './shared/FormInputDate';
+import { FormInputText } from '../shared/FormInputText';
+import { FormInputDropdown } from '../shared/FormInputDropdown';
+import { FormInputDate } from '../shared/FormInputDate';
 import dayjs from 'dayjs';
-import { sagaActions } from '../redux/sagaActions';
-import { Slide } from '@mui/material';
-
-const expenseForm = {
-    amount: '',
-    category: '',
-    description: '',
-    type: '',
-    date: dayjs(new Date().toISOString().substring(0, 10)),
-};
+import { sagaActions } from '../../redux/redux-saga/sagaActions';
+import { Transition } from '../../utils/ComponentHelper';
 
 const amountRules = {
     required: { value: true, message: 'Please enter amount' },
@@ -28,7 +20,7 @@ const amountRules = {
 
 const typeRules = {
     required: { value: true, message: 'Please select type' },
-}
+};
 
 const categoryRules = {
     required: { value: true, message: 'Please enter category' },
@@ -36,34 +28,31 @@ const categoryRules = {
     minLength: { value: 3, message: 'Category length should be more than 3' },
 };
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="left" ref={ref} {...props} />;
-});
-
-export default function ExpenseForm(props) {
-    const open = props.openForm;
+export default function ExpenseForm({ openForm, onClose, defaultFormValue }) {
+    const showForm = openForm;
     const dispatch = useDispatch();
-    const { handleSubmit, control, } = useForm({
-        defaultValues: expenseForm,
-    });;
+    const { handleSubmit, control } = useForm({
+        defaultValues: defaultFormValue,
+    });
 
     const addExpenseHandler = (data) => {
         const formatDate = dayjs(data.date.$d).format('LL');
         data.date = new Date(formatDate);
         const expense = {
             ...data,
+            user_id: localStorage.getItem('user_id'),
         };
         dispatch({ type: sagaActions.ADD_USER_EXPENSE, body: expense });
-        props.onClose();
+        onClose();
     };
 
     const handleClose = () => {
-        props.onClose();
+        onClose();
     };
 
     return (
         <Dialog
-            open={open}
+            open={showForm}
             onClose={handleClose}
             PaperProps={{
                 sx: {
@@ -73,41 +62,52 @@ export default function ExpenseForm(props) {
             TransitionComponent={Transition}
             keepMounted
         >
-            <DialogTitle sx={{ background: '#1976d2', color: '#fff', fontWeight: 5 }}>Add Expense</DialogTitle>
+            <DialogTitle
+                sx={{ background: '#1976d2', color: '#fff', fontWeight: 5 }}
+            >
+                Add Expense
+            </DialogTitle>
             <DialogContent>
-                <DialogContentText sx={{ m: '1rem', textAlign: 'right', fontSize: '12px' }}>
+                <DialogContentText
+                    sx={{ m: '1rem', textAlign: 'right', fontSize: '12px' }}
+                >
                     (Track your daily expenses)
                 </DialogContentText>
-                <FormInputDate name='date' control={control} label='Date' />
+                <FormInputDate name="date" control={control} label="Date" />
                 <FormInputText
-                    name='amount'
-                    label='Amount'
+                    name="amount"
+                    label="Amount"
                     control={control}
-                    type='number'
+                    type="number"
                     rules={amountRules}
                 />
-                <FormInputDropdown name='type' label='Type' control={control} rules={typeRules} />
+                <FormInputDropdown
+                    name="type"
+                    label="Type"
+                    control={control}
+                    rules={typeRules}
+                />
                 <FormInputText
-                    name='category'
-                    label='Category'
+                    name="category"
+                    label="Category"
                     control={control}
                     rules={categoryRules}
                 />
                 <FormInputText
-                    name='description'
-                    label='Description'
+                    name="description"
+                    label="Description"
                     control={control}
                     rules={{}}
                 />
             </DialogContent>
             <DialogActions sx={{ mb: '1rem' }}>
-                <Button onClick={handleClose} variant='contained' color='error'>
+                <Button onClick={handleClose} variant="contained" color="error">
                     Cancel
                 </Button>
                 <Button
                     onClick={handleSubmit(addExpenseHandler)}
-                    variant='contained'
-                    color='primary'
+                    variant="contained"
+                    color="primary"
                 >
                     Submit
                 </Button>
