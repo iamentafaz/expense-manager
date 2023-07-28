@@ -7,7 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import { Link, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { FormInputText } from '../shared/FormInputText';
 import { Transition } from '../../utils/ComponentHelper';
@@ -117,9 +117,13 @@ export default function LoginForm(props) {
                     sx={{ fontWeight: '600' }}
                 >
                     New to FinTrk?
-                    <Button variant="text" onClick={signUpClickHandler}>
+                    <Link
+                        component="button"
+                        onClick={signUpClickHandler}
+                        sx={{ ml: '.5rem' }}
+                    >
                         Join now
-                    </Button>
+                    </Link>
                 </Typography>
             </Dialog>
         </>

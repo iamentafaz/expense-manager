@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Grid } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useDispatch, useSelector } from 'react-redux';
 import ExpenseTable from '../components/ExpenseTable';
@@ -43,15 +43,20 @@ export default function Expenses() {
                 margin: '1rem 2rem',
             }}
         >
+            <Grid container>
+                <Grid item xs={6}>
+                    <ExpenseBarChart />
+                </Grid>
+            </Grid>
             <Box
                 sx={{
                     display: 'flex',
                     justifyContent: 'flex-end',
-                    marginBottom: '.75rem',
+                    marginBottom: '.25rem',
                 }}
             >
                 <Button
-                    variant="text"
+                    variant="outlined"
                     startIcon={<AddIcon />}
                     onClick={() => setOpenForm(true)}
                     sx={{
@@ -69,7 +74,6 @@ export default function Expenses() {
                     defaultFormValue={expenseFormValue}
                 />
             ) : null}
-            <ExpenseBarChart />
         </Box>
     );
 }

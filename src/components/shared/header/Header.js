@@ -8,22 +8,21 @@ import IconButton from '@mui/material/IconButton';
 import WalletIcon from '@mui/icons-material/Wallet';
 import { Link } from 'react-router-dom';
 import './Header.scss';
-import LoginForm from './forms/LoginForm';
-import SignUpForm from './forms/SignUpForm';
+import LoginForm from '../../forms/LoginForm';
+import SignUpForm from '../../forms/SignUpForm';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { sagaActions } from '../redux/redux-saga/sagaActions';
+import { sagaActions } from '../../../redux/redux-saga/sagaActions';
+import { Avatar } from '@mui/material';
 
 function Header() {
     const [loginOpen, setLoginOpen] = useState(false);
     const [openSignUpForm, setSignUpForm] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(
-        localStorage.getItem('user_id'),
-    );
     const history = useHistory();
     const dispatch = useDispatch();
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-    console.log('user', isAuthenticated);
+    const user = useSelector((state) => state.user);
+    console.log(user);
     const loggedOut = () => {
         localStorage.removeItem('user_id');
         history.replace('/');
@@ -62,13 +61,18 @@ function Header() {
                                 </Link>
                             </Typography>
                             {isAuthenticated ? (
-                                <Button
-                                    color="inherit"
-                                    onClick={loggedOut}
-                                    sx={{ fontWeight: '600' }}
-                                >
-                                    Logout
-                                </Button>
+                                <>
+                                    <Button
+                                        color="inherit"
+                                        onClick={loggedOut}
+                                        sx={{ fontWeight: '600' }}
+                                    >
+                                        Logout
+                                    </Button>
+                                    <Avatar sx={{ bgcolor: '#1e3762' }}>
+                                        M
+                                    </Avatar>
+                                </>
                             ) : (
                                 <Button
                                     color="inherit"

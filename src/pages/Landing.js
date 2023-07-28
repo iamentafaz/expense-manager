@@ -13,11 +13,11 @@ export default function Landing(props) {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
-                    background: '#000',
+                    background: '#060545',
                     color: '#fff',
                 }}
             >
-                <Typography variant="h3" color="secondary">
+                <Typography variant="h3">
                     Tired of tracking your expenses?
                 </Typography>
                 <Typography variant="h6">

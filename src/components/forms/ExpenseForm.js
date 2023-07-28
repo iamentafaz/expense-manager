@@ -100,7 +100,7 @@ export default function ExpenseForm({ openForm, onClose, defaultFormValue }) {
                     rules={{}}
                 />
             </DialogContent>
-            <DialogActions sx={{ mb: '1rem' }}>
+            <DialogActions sx={{ mb: '1rem', mr: '1rem' }}>
                 <Button onClick={handleClose} variant="contained" color="error">
                     Cancel
                 </Button>

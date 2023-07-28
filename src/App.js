@@ -1,5 +1,5 @@
 import './App.scss';
-import Header from './components/Header';
+import Header from './components/shared/header/Header';
 import Expenses from './pages/Expenses';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Landing from './pages/Landing';
