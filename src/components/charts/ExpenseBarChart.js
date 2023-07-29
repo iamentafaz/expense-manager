@@ -56,7 +56,7 @@ export const data = {
 const ExpenseBarChart = (props) => {
     return (
         <Container sx={{ my: '1rem' }}>
-            <Paper elevation={2} sx={{ p: '1rem' }}>
+            <Paper elevation={2} sx={{ p: '1rem', height: '415px' }}>
                 <Bar options={options} data={data} />
             </Paper>
         </Container>
