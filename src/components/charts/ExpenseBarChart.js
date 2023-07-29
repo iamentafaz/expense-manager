@@ -30,24 +30,24 @@ export const options = {
         },
         title: {
             display: true,
-            text: 'Your monthly expenses',
+            text: 'Last 6 months expenses',
         },
     },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May'];
+const labels = ['January', 'February', 'March', 'April', 'May', 'June'];
 
 export const data = {
     labels,
     datasets: [
         {
             label: 'Credit',
-            data: [5, 6, 7, 8, 9],
+            data: [5, 6, 7, 8, 9, 10],
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
         },
         {
             label: 'Debit',
-            data: [12, 13, 14, 15, 16],
+            data: [12, 13, 14, 15, 16, 17],
             backgroundColor: 'rgba(53, 162, 235, 0.5)',
         },
     ],

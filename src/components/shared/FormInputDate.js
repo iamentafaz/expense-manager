@@ -25,7 +25,7 @@ export const FormInputDate = ({ name, control, label }) => {
                                 onChange={onChange}
                                 label={label}
                                 disableFuture
-                                sx={{ width: '100%' }}
+                                sx={{ width: '100%', mt: '1.5rem' }}
                             />
                             {error ? (
                                 <Typography

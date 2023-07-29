@@ -25,8 +25,8 @@ const passwordRules = {
     minLength: { value: 6, message: 'Password must have length 6' },
 };
 
-export default function LoginForm(props) {
-    const open = props.openForm;
+export default function LoginForm({ openForm, onClose, openSignUpForm }) {
+    const open = openForm;
     const { handleSubmit, control } = useForm({
         defaultValues: {
             email: '',
@@ -43,12 +43,12 @@ export default function LoginForm(props) {
     };
 
     const handleClose = () => {
-        props.onClose();
+        onClose();
     };
 
     const signUpClickHandler = () => {
         handleClose();
-        props.openSignUpForm();
+        openSignUpForm();
     };
 
     return (
@@ -65,20 +65,16 @@ export default function LoginForm(props) {
                 keepMounted
             >
                 <DialogTitle
-                    sx={{ background: '#1976d2', color: '#fff', fontWeight: 5 }}
+                    sx={{
+                        background: '#1976d2',
+                        color: '#fff',
+                        fontWeight: 600,
+                        textAlign: 'center',
+                    }}
                 >
                     Log in
                 </DialogTitle>
-                <DialogContent>
-                    <DialogContentText
-                        sx={{
-                            mt: '.5rem',
-                            textAlign: 'right',
-                            fontSize: '14px',
-                        }}
-                    >
-                        (Login to FinTrack to start tracking your expenses)
-                    </DialogContentText>
+                <DialogContent sx={{ mt: '2rem' }}>
                     <FormInputText
                         name="email"
                         label="Email"
@@ -110,12 +106,7 @@ export default function LoginForm(props) {
                         Login
                     </Button>
                 </DialogActions>
-                <Typography
-                    paragraph
-                    color="tertiary"
-                    align="center"
-                    sx={{ fontWeight: '600' }}
-                >
+                <Typography paragraph align="center" sx={{ fontWeight: '550' }}>
                     New to FinTrk?
                     <Link
                         component="button"

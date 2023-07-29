@@ -7,6 +7,7 @@ import ExpenseForm from '../components/forms/ExpenseForm';
 import { sagaActions } from '../redux/redux-saga/sagaActions';
 import ExpenseBarChart from '../components/charts/ExpenseBarChart';
 import dayjs from 'dayjs';
+import ExpenseDonughtChart from '../components/charts/ExpenseDonughtChart';
 
 const expenseForm = {
     amount: '',
@@ -46,6 +47,9 @@ export default function Expenses() {
             <Grid container>
                 <Grid item xs={6}>
                     <ExpenseBarChart />
+                </Grid>
+                <Grid item xs={6}>
+                    <ExpenseDonughtChart />
                 </Grid>
             </Grid>
             <Box

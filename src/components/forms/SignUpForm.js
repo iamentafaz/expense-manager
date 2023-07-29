@@ -11,6 +11,7 @@ import { FormInputText } from '../shared/FormInputText';
 import { sagaActions } from '../../redux/redux-saga/sagaActions';
 import { Transition } from '../../utils/ComponentHelper';
 import { useHistory } from 'react-router-dom';
+import { Link, Typography } from '@mui/material';
 
 const emailRules = {
     required: { value: true, message: 'Email is required' },
@@ -45,6 +46,11 @@ export default function SignUpForm(props) {
         props.onClose();
     };
 
+    const loginFormOpenHandler = () => {
+        handleClose();
+        props.openLogInForm();
+    };
+
     return (
         <Dialog
             open={open}
@@ -58,16 +64,16 @@ export default function SignUpForm(props) {
             keepMounted
         >
             <DialogTitle
-                sx={{ background: '#1976d2', color: '#fff', fontWeight: 5 }}
+                sx={{
+                    background: '#1976d2',
+                    color: '#fff',
+                    fontWeight: 550,
+                    textAlign: 'center',
+                }}
             >
                 Sign up to FinTrk
             </DialogTitle>
-            <DialogContent>
-                <DialogContentText
-                    sx={{ mt: '.5rem', textAlign: 'right', fontSize: '14px' }}
-                >
-                    (Sign up to FinTrk to start tracking your expenses)
-                </DialogContentText>
+            <DialogContent sx={{ mt: '2rem' }}>
                 <FormInputText
                     name="email"
                     label="Email"
@@ -95,6 +101,16 @@ export default function SignUpForm(props) {
                     Agree & Join
                 </Button>
             </DialogActions>
+            <Typography paragraph align="center" sx={{ fontWeight: '550' }}>
+                Already have an account?
+                <Link
+                    component="button"
+                    onClick={loginFormOpenHandler}
+                    sx={{ ml: '.5rem' }}
+                >
+                    Login
+                </Link>
+            </Typography>
         </Dialog>
     );
 }

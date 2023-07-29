@@ -63,16 +63,16 @@ export default function ExpenseForm({ openForm, onClose, defaultFormValue }) {
             keepMounted
         >
             <DialogTitle
-                sx={{ background: '#1976d2', color: '#fff', fontWeight: 5 }}
+                sx={{
+                    background: '#1976d2',
+                    color: '#fff',
+                    fontWeight: 550,
+                    textAlign: 'center',
+                }}
             >
                 Add Expense
             </DialogTitle>
             <DialogContent>
-                <DialogContentText
-                    sx={{ m: '1rem', textAlign: 'right', fontSize: '12px' }}
-                >
-                    (Track your daily expenses)
-                </DialogContentText>
                 <FormInputDate name="date" control={control} label="Date" />
                 <FormInputText
                     name="amount"
