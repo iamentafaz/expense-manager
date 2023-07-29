@@ -1,4 +1,6 @@
-import { Box, Typography } from '@mui/material';
+import React from 'react';
+import { Box, Card, CardContent, Grid, Typography } from '@mui/material';
+import { SecurityOutlined, Groups2Outlined, ThumbUpOutlined, GradeOutlined } from '@mui/icons-material'
 
 export default function Landing(props) {
     return (
@@ -23,6 +25,50 @@ export default function Landing(props) {
                 <Typography variant="h6">
                     <span>FinTrk</span> helps you manage it efficiently
                 </Typography>
+                <Box sx={{ m: '0 10%', mt: 10 }}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} md={3}>
+                            <Card sx={{ p: '1.5rem' }}>
+                                <CardContent>
+                                    <SecurityOutlined fontSize='large' color='secondary'></SecurityOutlined>
+                                </CardContent>
+                                <Typography component="div" gutterBottom variant='h6' fontWeight={550}>
+                                    100% Secured Data
+                                </Typography>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={12} md={3}>
+                            <Card sx={{ p: '1.5rem' }}>
+                                <CardContent>
+                                    <Groups2Outlined fontSize='large' color='secondary'></Groups2Outlined>
+                                </CardContent>
+                                <Typography component="div" gutterBottom variant='h6' fontWeight={550}>
+                                    10+ million users
+                                </Typography>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={12} md={3}>
+                            <Card sx={{ p: '1.5rem' }}>
+                                <CardContent>
+                                    <ThumbUpOutlined fontSize='large' color='secondary'></ThumbUpOutlined>
+                                </CardContent>
+                                <Typography component="div" gutterBottom variant='h6' fontWeight={550}>
+                                    100k+ 5-Star reviews
+                                </Typography>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={12} md={3}>
+                            <Card sx={{ p: '1.5rem' }}>
+                                <CardContent>
+                                    <GradeOutlined fontSize='large' color='secondary'></GradeOutlined>
+                                </CardContent>
+                                <Typography component="div" gutterBottom variant='h6' fontWeight={550}>
+                                    App of the day
+                                </Typography>
+                            </Card>
+                        </Grid>
+                    </Grid>
+                </Box>
             </Box>
         </>
     );
