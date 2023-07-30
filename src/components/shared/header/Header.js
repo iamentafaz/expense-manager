@@ -25,7 +25,6 @@ function Header() {
     const dispatch = useDispatch();
     const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
     const user = useSelector((state) => state.user);
-    console.log(user);
 
     const loggedOut = () => {
         localStorage.removeItem('user_id');

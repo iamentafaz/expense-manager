@@ -1,6 +1,11 @@
 import React from 'react';
 import { Box, Card, CardContent, Grid, Typography } from '@mui/material';
-import { SecurityOutlined, Groups2Outlined, ThumbUpOutlined, GradeOutlined } from '@mui/icons-material'
+import {
+    SecurityOutlined,
+    Groups2Outlined,
+    ThumbUpOutlined,
+    GradeOutlined,
+} from '@mui/icons-material';
 
 export default function Landing(props) {
     return (
@@ -20,7 +25,8 @@ export default function Landing(props) {
                 }}
             >
                 <Typography variant="h3">
-                    Tired of tracking your expenses?
+                    Tired of <span className="highlight-text">tracking</span>{' '}
+                    your <span className="highlight-text">expenses?</span>
                 </Typography>
                 <Typography variant="h6">
                     <span>FinTrk</span> helps you manage it efficiently
@@ -30,9 +36,17 @@ export default function Landing(props) {
                         <Grid item xs={12} md={3}>
                             <Card sx={{ p: '1.5rem' }}>
                                 <CardContent>
-                                    <SecurityOutlined fontSize='large' color='secondary'></SecurityOutlined>
+                                    <SecurityOutlined
+                                        fontSize="large"
+                                        color="secondary"
+                                    ></SecurityOutlined>
                                 </CardContent>
-                                <Typography component="div" gutterBottom variant='h6' fontWeight={550}>
+                                <Typography
+                                    component="div"
+                                    gutterBottom
+                                    variant="h6"
+                                    fontWeight={550}
+                                >
                                     100% Secured Data
                                 </Typography>
                             </Card>
@@ -40,30 +54,54 @@ export default function Landing(props) {
                         <Grid item xs={12} md={3}>
                             <Card sx={{ p: '1.5rem' }}>
                                 <CardContent>
-                                    <Groups2Outlined fontSize='large' color='secondary'></Groups2Outlined>
+                                    <Groups2Outlined
+                                        fontSize="large"
+                                        color="secondary"
+                                    ></Groups2Outlined>
                                 </CardContent>
-                                <Typography component="div" gutterBottom variant='h6' fontWeight={550}>
-                                    10+ million users
+                                <Typography
+                                    component="div"
+                                    gutterBottom
+                                    variant="h6"
+                                    fontWeight={550}
+                                >
+                                    10+ Million Users
                                 </Typography>
                             </Card>
                         </Grid>
                         <Grid item xs={12} md={3}>
                             <Card sx={{ p: '1.5rem' }}>
                                 <CardContent>
-                                    <ThumbUpOutlined fontSize='large' color='secondary'></ThumbUpOutlined>
+                                    <ThumbUpOutlined
+                                        fontSize="large"
+                                        color="secondary"
+                                    ></ThumbUpOutlined>
                                 </CardContent>
-                                <Typography component="div" gutterBottom variant='h6' fontWeight={550}>
-                                    100k+ 5-Star reviews
+                                <Typography
+                                    component="div"
+                                    gutterBottom
+                                    variant="h6"
+                                    fontWeight={550}
+                                >
+                                    100k+ Reviews
                                 </Typography>
                             </Card>
                         </Grid>
                         <Grid item xs={12} md={3}>
                             <Card sx={{ p: '1.5rem' }}>
                                 <CardContent>
-                                    <GradeOutlined fontSize='large' color='secondary'></GradeOutlined>
+                                    <GradeOutlined
+                                        fontSize="large"
+                                        color="secondary"
+                                    ></GradeOutlined>
                                 </CardContent>
-                                <Typography component="div" gutterBottom variant='h6' fontWeight={550}>
-                                    App of the day
+                                <Typography
+                                    component="div"
+                                    gutterBottom
+                                    variant="h6"
+                                    fontWeight={550}
+                                >
+                                    App of the Day
                                 </Typography>
                             </Card>
                         </Grid>
