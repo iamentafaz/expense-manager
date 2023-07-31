@@ -93,7 +93,7 @@ function* logoutUserSaga() {
     try {
         yield put(logout());
     } catch (error) {
-        yield put({ type: sagaActions.LOGIN_FAILED, error: e });
+        yield put({ type: sagaActions.LOGIN_FAILED, error });
     }
 }
 
