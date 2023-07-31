@@ -29,6 +29,7 @@ function Header() {
     const loggedOut = () => {
         localStorage.removeItem('user_id');
         history.replace('/');
+        handleClose();
         dispatch({ type: sagaActions.LOGOUT_USER });
     };
 

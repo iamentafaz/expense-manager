@@ -6,8 +6,16 @@ import {
     ThumbUpOutlined,
     GradeOutlined,
 } from '@mui/icons-material';
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 export default function Landing(props) {
+    const user = useSelector(state => state.user.isAuthenticated);
+
+    if(user) {
+        return <Redirect to={'/expenses'}/>
+    }
+
     return (
         <>
             <Box
