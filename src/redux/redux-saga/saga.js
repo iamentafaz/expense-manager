@@ -4,7 +4,6 @@ import { getExpenses, apiFailure } from '../slices/expenseSlice';
 
 import { auth, db } from '../../firebase';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
-import dayjs from 'dayjs';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -19,13 +18,6 @@ const callGetApi = async () => {
     const querySnapshot = await getDocs(q);
     const newData = querySnapshot.docs.map((doc) => {
         const data = { ...doc.data() };
-        // if ('date' in data) {
-        //     const fireBaseTime = new Date(
-        //         data.date.seconds * 1000 + data.date.nanoseconds / 1000000,
-        //     );
-        //     const date = dayjs(fireBaseTime.toDateString()).format('LL');
-        //     data.date = date;
-        // }
         return { ...data, id: doc.id };
     });
     return newData;
@@ -61,7 +53,6 @@ function* apiFailed(response) {
 
 const callSignUpApi = async ({ email, password }) => {
     const user = await createUserWithEmailAndPassword(auth, email, password);
-    console.log('User', user);
     return user;
 };
 
@@ -99,12 +90,12 @@ function* logoutUserSaga() {
 
 export default function* rootSaga() {
     yield all([
+        takeEvery(sagaActions.SIGNUP_USER, signUpUser),
+        takeEvery(sagaActions.LOGIN_USER, loginUser),
+        takeEvery(sagaActions.LOGOUT_USER, logoutUserSaga),
         takeEvery(sagaActions.FETCH_USER_EXPENSES, fetchUserExpenses),
         takeEvery(sagaActions.ADD_USER_EXPENSE, addUserExpense),
         takeEvery(sagaActions.EXPENSE_FETCH_FAILED, apiFailed),
         takeEvery(sagaActions.EXPENSE_ADD_FAILED, apiFailed),
-        takeEvery(sagaActions.SIGNUP_USER, signUpUser),
-        takeEvery(sagaActions.LOGIN_USER, loginUser),
-        takeEvery(sagaActions.LOGOUT_USER, logoutUserSaga),
     ]);
 }
