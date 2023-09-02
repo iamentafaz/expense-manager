@@ -8,13 +8,32 @@ import {
 } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { TypeAnimation } from 'react-type-animation';
 
 export default function Landing(props) {
-    const user = useSelector(state => state.user.isAuthenticated);
+    const user = useSelector((state) => state.user.isAuthenticated);
 
-    if(user) {
-        return <Redirect to={'/expenses'}/>
+    if (user) {
+        return <Redirect to={'/expenses'} />;
     }
+
+    const LandingText = () => {
+        return (
+            <TypeAnimation
+                sequence={[
+                    'Tired of tracking your expenses',
+                    1000,
+                    'We make it simple for you',
+                    1200,
+                    () => {
+                        console.log('Sequence completed');
+                    },
+                ]}
+                repeat={Infinity}
+                className="highlight-text"
+            />
+        );
+    };
 
     return (
         <>
@@ -22,19 +41,30 @@ export default function Landing(props) {
                 sx={{
                     textAlign: 'center',
                     height: {
-                        xs: 'calc(100vh - 56px)',
+                        // md: 'calc(100vh - 64px)',
                         sm: 'calc(100vh - 64px)',
+                        xs: '100%',
                     },
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
                     background: '#060545',
                     color: '#fff',
+                    padding: {
+                        xs: '2rem 0',
+                    },
                 }}
             >
-                <Typography variant="h3">
-                    Tired of <span className="highlight-text">tracking</span>{' '}
-                    your <span className="highlight-text">expenses?</span>
+                <Typography
+                    variant="h3"
+                    sx={{
+                        fontSize: {
+                            sm: '3rem',
+                            xs: '2rem',
+                        },
+                    }}
+                >
+                    <LandingText />
                 </Typography>
                 <Typography variant="h6">
                     <span>FinTrk</span> helps you manage it efficiently

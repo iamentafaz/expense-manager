@@ -3,15 +3,15 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import { Link, Typography } from '@mui/material';
+import { IconButton, Link, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { FormInputText } from '../shared/FormInputText';
 import { Transition } from '../../utils/ComponentHelper';
 import { sagaActions } from '../../redux/redux-saga/sagaActions';
+import CloseIcon from '@mui/icons-material/Close';
 
 const emailRules = {
     required: { value: true, message: 'Email is required' },
@@ -66,15 +66,26 @@ export default function LoginForm({ openForm, onClose, openSignUpForm }) {
             >
                 <DialogTitle
                     sx={{
-                        background: '#1976d2',
-                        color: '#fff',
-                        fontWeight: 600,
-                        textAlign: 'center',
+                        // background: '#1976d2',
+                        color: '#000',
+                        textAlign: 'left',
                     }}
                 >
                     Log in
                 </DialogTitle>
-                <DialogContent sx={{ mt: '2rem' }}>
+                <IconButton
+                    aria-label="close"
+                    onClick={handleClose}
+                    sx={{
+                        position: 'absolute',
+                        right: 8,
+                        top: 8,
+                        color: (theme) => theme.palette.grey[900],
+                    }}
+                >
+                    <CloseIcon />
+                </IconButton>
+                <DialogContent sx={{ pt: '1rem' }} dividers>
                     <FormInputText
                         name="email"
                         label="Email"
@@ -90,7 +101,7 @@ export default function LoginForm({ openForm, onClose, openSignUpForm }) {
                         rules={passwordRules}
                     />
                 </DialogContent>
-                <DialogActions sx={{ my: '1rem', mr: '1rem' }}>
+                <DialogActions sx={{ mt: '1rem', mr: '1rem' }}>
                     <Button
                         onClick={handleClose}
                         variant="contained"
